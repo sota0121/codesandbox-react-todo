@@ -15,7 +15,14 @@ export default function App() {
     setInputText(event.target.value);
   };
   const handleClickInputText = () => {
+    if (inputText === "") return;
     const newToDos = [...todoContents, inputText];
+    setToDoContents(newToDos);
+    setInputText(""); // init inputText
+  };
+  const handleClickRemove = (index) => {
+    const newToDos = [...todoContents];
+    newToDos.splice(index, 1); // delete element of set index
     setToDoContents(newToDos);
   };
 
@@ -26,6 +33,7 @@ export default function App() {
           id="add-text"
           placeholder="Input ToDo"
           onChange={handleChangeInputText}
+          value={inputText}
         />
         <button onClick={handleClickInputText} id="add-btn">
           Add
@@ -34,12 +42,18 @@ export default function App() {
       <div className="todo-area">
         <p className="title">ToDo</p>
         <ul id="todo-list">
-          {todoContents.map((c) => {
+          {todoContents.map((c, index) => {
             return (
               <div key={c} className="list-row">
                 <li>{c}</li>
                 <button>complete</button>
-                <button>remove</button>
+                <button
+                  onClick={() => {
+                    handleClickRemove(index);
+                  }}
+                >
+                  remove
+                </button>
               </div>
             );
           })}
