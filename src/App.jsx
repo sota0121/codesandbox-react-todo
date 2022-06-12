@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./styles.css";
 
 import { InputTodo } from "./components/InputTodo";
+import { TodoContents } from "./components/TodoContents";
 
 export default function App() {
   // ---------------------------
@@ -69,29 +70,11 @@ export default function App() {
       />
       <div className="todo-area">
         <p className="title">ToDo</p>
-        <ul id="todo-list">
-          {todoContents.map((c, index) => {
-            return (
-              <div key={c} className="list-row">
-                <li>{c}</li>
-                <button
-                  onClick={() => {
-                    handleClickComplete(index);
-                  }}
-                >
-                  complete
-                </button>
-                <button
-                  onClick={() => {
-                    handleClickRemove(index);
-                  }}
-                >
-                  remove
-                </button>
-              </div>
-            );
-          })}
-        </ul>
+        <TodoContents
+          todoContents={todoContents}
+          onClickComplete={handleClickComplete}
+          onClickRemove={handleClickRemove}
+        />
       </div>
       <div className="done-area">
         <p className="title">Done</p>
