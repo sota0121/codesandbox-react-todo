@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import "./styles.css";
 
+import { InputTodo } from "./components/InputTodo";
+
 export default function App() {
   // ---------------------------
   // state
@@ -18,6 +20,7 @@ export default function App() {
 
   const handleClickInputText = () => {
     if (inputText === "") return;
+    console.log(todoContents);
     const newToDos = [...todoContents, inputText];
     setToDoContents(newToDos);
     setInputText(""); // init inputText
@@ -59,17 +62,11 @@ export default function App() {
 
   return (
     <>
-      <div className="input-area">
-        <input
-          id="add-text"
-          placeholder="Input ToDo"
-          onChange={handleChangeInputText}
-          value={inputText}
-        />
-        <button onClick={handleClickInputText} id="add-btn">
-          Add
-        </button>
-      </div>
+      <InputTodo
+        onClick={handleClickInputText}
+        onChange={handleChangeInputText}
+        inputText={inputText}
+      />
       <div className="todo-area">
         <p className="title">ToDo</p>
         <ul id="todo-list">
