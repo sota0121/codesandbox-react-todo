@@ -3,6 +3,7 @@ import "./styles.css";
 
 import { InputTodo } from "./components/InputTodo";
 import { TodoContents } from "./components/TodoContents";
+import { DoneContents } from "./components/DoneComponents";
 
 export default function App() {
   // ---------------------------
@@ -73,25 +74,10 @@ export default function App() {
         onClickComplete={handleClickComplete}
         onClickRemove={handleClickRemove}
       />
-      <div className="done-area">
-        <p className="title">Done</p>
-        <ul id="done-list">
-          {doneContents.map((c, index) => {
-            return (
-              <div key={c} className="list-row">
-                <li>{c}</li>
-                <button
-                  onClick={() => {
-                    handleClickRebase(index);
-                  }}
-                >
-                  rebase
-                </button>
-              </div>
-            );
-          })}
-        </ul>
-      </div>
+      <DoneContents
+        doneContents={doneContents}
+        onClickRebase={handleClickRebase}
+      />
     </>
   );
 }
