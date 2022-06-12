@@ -11,7 +11,7 @@ const style = {
 };
 
 export const InputTodo = (props) => {
-  const { onClick, onChange, inputText } = props;
+  const { onClick, onChange, inputText, disabled } = props;
 
   return (
     <div style={style} className="input-area">
@@ -20,6 +20,7 @@ export const InputTodo = (props) => {
         placeholder="Input ToDo"
         onChange={onChange}
         value={inputText}
+        disabled={disabled}
       />
       <button onClick={onClick} id="add-btn">
         Add

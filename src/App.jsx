@@ -68,7 +68,11 @@ export default function App() {
         onClick={handleClickInputText}
         onChange={handleChangeInputText}
         inputText={inputText}
+        disabled={todoContents.length >= 5}
       />
+      {todoContents.length >= 5 && (
+        <p style={{ color: "darkred" }}>todo list must have up to 5 items</p>
+      )}
       <TodoContents
         todoContents={todoContents}
         onClickComplete={handleClickComplete}
