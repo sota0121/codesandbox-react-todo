@@ -5,25 +5,45 @@ const initialToDoContents = ["something to do"];
 const initialDoneContents = ["something have been done"];
 
 export default function App() {
+  // ---------------------------
   // state
+  // ---------------------------
   const [inputText, setInputText] = useState("");
   const [todoContents, setToDoContents] = useState(initialToDoContents);
   const [doneContents, setDoneContents] = useState(initialDoneContents);
 
+  // ---------------------------
   // handler
+  // ---------------------------
   const handleChangeInputText = (event) => {
     setInputText(event.target.value);
   };
+
   const handleClickInputText = () => {
     if (inputText === "") return;
     const newToDos = [...todoContents, inputText];
     setToDoContents(newToDos);
     setInputText(""); // init inputText
   };
+
   const handleClickRemove = (index) => {
     const newToDos = [...todoContents];
     newToDos.splice(index, 1); // delete element of set index
     setToDoContents(newToDos);
+  };
+
+  const handleClickComplete = (index) => {
+    // get content from todo list
+    const newDone = todoContents[index];
+
+    // remove from todo list
+    const newToDos = [...todoContents];
+    newToDos.splice(index, 1);
+    setToDoContents(newToDos);
+
+    // add to done list
+    const newDones = [...doneContents, newDone];
+    setDoneContents(newDones);
   };
 
   return (
@@ -46,7 +66,13 @@ export default function App() {
             return (
               <div key={c} className="list-row">
                 <li>{c}</li>
-                <button>complete</button>
+                <button
+                  onClick={() => {
+                    handleClickComplete(index);
+                  }}
+                >
+                  complete
+                </button>
                 <button
                   onClick={() => {
                     handleClickRemove(index);
