@@ -6,14 +6,30 @@ const initialDoneContents = ["something have been done"];
 
 export default function App() {
   // state
+  const [inputText, setInputText] = useState("");
   const [todoContents, setToDoContents] = useState(initialToDoContents);
   const [doneContents, setDoneContents] = useState(initialDoneContents);
+
+  // handler
+  const handleChangeInputText = (event) => {
+    setInputText(event.target.value);
+  };
+  const handleClickInputText = () => {
+    const newToDos = [...todoContents, inputText];
+    setToDoContents(newToDos);
+  };
 
   return (
     <>
       <div className="input-area">
-        <input id="add-text" placeholder="Input ToDo" />
-        <button id="add-btn">Add</button>
+        <input
+          id="add-text"
+          placeholder="Input ToDo"
+          onChange={handleChangeInputText}
+        />
+        <button onClick={handleClickInputText} id="add-btn">
+          Add
+        </button>
       </div>
       <div className="todo-area">
         <p className="title">ToDo</p>
