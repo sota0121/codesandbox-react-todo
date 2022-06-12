@@ -1,6 +1,14 @@
+import React, { useState } from "react";
 import "./styles.css";
 
+const initialToDoContents = ["something to do"];
+const initialDoneContents = ["something have been done"];
+
 export default function App() {
+  // state
+  const [todoContents, setToDoContents] = useState(initialToDoContents);
+  const [doneContents, setDoneContents] = useState(initialDoneContents);
+
   return (
     <>
       <div className="input-area">
@@ -10,20 +18,28 @@ export default function App() {
       <div className="todo-area">
         <p className="title">ToDo</p>
         <ul id="todo-list">
-          <div className="list-row">
-            <li>something to do</li>
-            <button>complete</button>
-            <button>remove</button>
-          </div>
+          {todoContents.map((c) => {
+            return (
+              <div key={c} className="list-row">
+                <li>{c}</li>
+                <button>complete</button>
+                <button>remove</button>
+              </div>
+            );
+          })}
         </ul>
       </div>
       <div className="done-area">
         <p className="title">Done</p>
         <ul id="done-list">
-          <div className="list-row">
-            <li>something has been done</li>
-            <button>rebase</button>
-          </div>
+          {doneContents.map((c) => {
+            return (
+              <div key={c} className="list-row">
+                <li>{c}</li>
+                <button>rebase</button>
+              </div>
+            );
+          })}
         </ul>
       </div>
     </>
