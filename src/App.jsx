@@ -68,14 +68,11 @@ export default function App() {
         onChange={handleChangeInputText}
         inputText={inputText}
       />
-      <div className="todo-area">
-        <p className="title">ToDo</p>
-        <TodoContents
-          todoContents={todoContents}
-          onClickComplete={handleClickComplete}
-          onClickRemove={handleClickRemove}
-        />
-      </div>
+      <TodoContents
+        todoContents={todoContents}
+        onClickComplete={handleClickComplete}
+        onClickRemove={handleClickRemove}
+      />
       <div className="done-area">
         <p className="title">Done</p>
         <ul id="done-list">
