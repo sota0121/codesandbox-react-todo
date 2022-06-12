@@ -1,16 +1,13 @@
 import React, { useState } from "react";
 import "./styles.css";
 
-const initialToDoContents = ["something to do"];
-const initialDoneContents = ["something have been done"];
-
 export default function App() {
   // ---------------------------
   // state
   // ---------------------------
   const [inputText, setInputText] = useState("");
-  const [todoContents, setToDoContents] = useState(initialToDoContents);
-  const [doneContents, setDoneContents] = useState(initialDoneContents);
+  const [todoContents, setToDoContents] = useState([]);
+  const [doneContents, setDoneContents] = useState([]);
 
   // ---------------------------
   // handler
