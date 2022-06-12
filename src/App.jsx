@@ -46,6 +46,20 @@ export default function App() {
     setDoneContents(newDones);
   };
 
+  const handleClickRebase = (index) => {
+    // get conntent from done list
+    const rebaseTarget = doneContents[index];
+
+    // remove from done list
+    const newDones = [...doneContents];
+    newDones.splice(index, 1);
+    setDoneContents(newDones);
+
+    // add to todo-list
+    const newTodos = [...todoContents, rebaseTarget];
+    setToDoContents(newTodos);
+  };
+
   return (
     <>
       <div className="input-area">
@@ -88,11 +102,17 @@ export default function App() {
       <div className="done-area">
         <p className="title">Done</p>
         <ul id="done-list">
-          {doneContents.map((c) => {
+          {doneContents.map((c, index) => {
             return (
               <div key={c} className="list-row">
                 <li>{c}</li>
-                <button>rebase</button>
+                <button
+                  onClick={() => {
+                    handleClickRebase(index);
+                  }}
+                >
+                  rebase
+                </button>
               </div>
             );
           })}
